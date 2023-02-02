@@ -1,11 +1,20 @@
+:root {
+  --secondary-color: rgb(116, 204, 255);
+  --secondary-color-hover: rgb(151, 215, 252);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  /* outline: 1px solid white; */
 }
 
 html {
   height: 100%;
+  /* font-family: "Roboto"; */
+  font-size: 22px;
+  color: white;
 }
 
 body {
@@ -20,7 +29,132 @@ body {
 
 .window {
   width: 650px;
-  height: 700px;
+  height: 760px;
   border: 1px solid black;
-  background-color: rgba(0, 0, 0, 0.85);
+  padding: 20px;
+  background-color: rgba(32, 34, 37, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+form {
+  width: 540px;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  justify-content: space-between;
+  height: 420px;
+}
+
+ul > li+li {
+  margin-top: 10px;
+}
+
+input {
+  font-family: inherit;
+}
+
+li.field > input {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(54, 60, 66);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  border-bottom: 3px solid grey;
+  padding: 20px;
+}
+
+li.field > input:focus {
+  border-bottom: 3px solid var(--secondary-color);
+}
+
+li.field > input:valid {
+  border-bottom: 3px solid rgb(91, 163, 63);
+}
+
+.checkbox {
+  height: 50px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.custom-checkbox+label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+.custom-checkbox+label::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #adb5bd;
+  border-radius: 0.25em;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+
+.custom-checkbox:checked+label::before {
+  border-color: #0b76ef;
+  background-color: #0b76ef;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+
+.checkbox > input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.checkbox > label {
+  font-size: 0.8rem;
+}
+
+.terms {
+  color: var(--secondary-color);
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+button {
+  height: 50px;
+  background-color: var(--secondary-color);
+  font-family: inherit;
+  font-size: 1rem;
+  margin-top: 14px;
+  border: none;
+}
+
+button:hover {
+  background-color: var(--secondary-color-hover);
+
+}
+
+.has-account > p {
+  display: inline;
+}
+
+.has-account > a {
+  color: var(--secondary-color);
+  text-decoration: none;
 }
