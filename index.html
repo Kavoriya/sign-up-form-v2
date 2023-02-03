@@ -6,30 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign up</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="window">
     <h1>Create new account</h1>
-    <form action="">
+    <form action="#" method="post">
       <ul>
-        <li class="field">
+        <li class="float-container">
           <label for="">EMAIL</label>
-          <input type="email" required>
+          <input class="float-field" type="email" name="email" required>
         </li>
-        <li class="field">
+        <li class="float-container">
           <label for="">USERNAME</label>
-          <input type="text" required>
+          <input class="float-field" type="text" name="username" required>
         </li>
-        <li class="field">
+        <li class="float-container">
           <label for="">PASSWORD</label>
-          <input type="password" required>
+          <input class="float-field" type="password" required id="password-1" name="password_1">
         </li>
-        <li class="field">
+        <li class="float-container">
           <label for="">REPEAT PASSWORD</label>
-          <input type="password" required>
+          <input class="float-field" type="password" required id="password-2" name="password_2">
         </li>
         <li class="checkbox">
-          <input type="checkbox" id="agree" class="custom-checkbox">
+          <input type="checkbox" id="agree" class="custom-checkbox" name="agree">
           <label for="agree">I agree to the <a href="#" class="terms">Terms of Service</a></label>
         </li>
       </ul>
