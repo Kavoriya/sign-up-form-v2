@@ -47,6 +47,7 @@ function handleBlurEmail() {
     makeFieldGrey(email);
   } else {
     makeFieldRed(email);
+    console.log("Invalid email");
   }
 }
 
@@ -56,8 +57,10 @@ let username = document.querySelector(".username");
 username.addEventListener('blur', handleBlurUsername);
 
 function handleBlurUsername() {
-  if (username.value!='' && (username.value.length < 3 || username.value.length > 30)) {
+  let re = new RegExp(/^[a-zA-Z0-9]{3,20}$/);
+  if (username.value!='' && (!re.test(username.value))) {
     makeFieldRed(username);
+    console.log("Username should be 3-20 characters long");
   } else if (username.value == '') {
     makeFieldGrey(username);
   } else {
@@ -73,12 +76,19 @@ passwordOne.addEventListener('blur', handleBlurPasswords);
 passwordTwo.addEventListener('blur', handleBlurPasswords);
 
 function handleBlurPasswords() {
+  let re = new RegExp(/^[a-zA-Z0-9]{6,30}$/);
   if (passwordOne.value!='' && passwordTwo.value!='' && passwordOne.value!=passwordTwo.value) {
     makeFieldRed(passwordOne);
     makeFieldRed(passwordTwo);
+    console.log("Passwords don't match");
+  } else if (!re.test(passwordOne.value) && passwordOne.value!='' && passwordTwo.value!='') {
+    makeFieldRed(passwordOne);
+    makeFieldRed(passwordTwo);
+    console.log("Password should be 6-30 characters long");
   } else if (passwordOne.value!='' && passwordTwo.value!='' && passwordOne.value==passwordTwo.value) {
     makeFieldGreen(passwordOne);
     makeFieldGreen(passwordTwo);
+    console.log("Passwords match");
   } else if ((passwordOne.value=='' && passwordTwo.value!='') || (passwordOne.value!='' && passwordTwo.value=='')) {
     makeFieldGrey(passwordOne);
     makeFieldGrey(passwordTwo);
@@ -99,4 +109,3 @@ function makeFieldGrey(field) {
   field.parentNode.classList.remove("invalid")
   field.parentNode.classList.remove("valid")
 }
-
