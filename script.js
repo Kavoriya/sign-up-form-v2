@@ -1,63 +1,3 @@
-// Float labels
-
-// const FloatLabel = (() => {
-
-//   // const handleFocus = (e) => {
-//   //   const target = e.target;
-//   //   target.parentNode.classList.add('active');
-//   // };
-
-//   // const handleBlur = (e) => {
-//   //   const target = e.target;
-//   //   if(!target.value) {
-//   //     target.parentNode.classList.remove('active');
-//   //   }  
-//   // };
-
-//   const bindEventsForFloats = (element) => {
-//     const floatField = element.querySelector('input');
-//     floatField.addEventListener('focus', handleFocus);
-//     floatField.addEventListener('blur', handleBlur);  
-//   };
-
-//   // const init = () => {
-//   //   const floatContainers = document.querySelectorAll('.float-container');
-    
-//     floatContainers.forEach((element) => {
-//       bindEventsForFloats(element);
-//     });
-//   };
-
-//   return {
-//     init: init
-//   };
-// })();
-// FloatLabel.init();
-
-//
-const handleFocusFloats = (e) => {
-  const target = e.target;
-  target.parentNode.classList.add('active');
-};
-
-const handleBlurFloats = (e) => {
-  const target = e.target;
-  if(!target.value) {
-    target.parentNode.classList.remove('active');
-  }  
-};
-
-const floatContainers = document.querySelectorAll('.float-container');
-floatContainers.forEach((element) => {
-  bindEventsForFloats(element);
-});
-
-function bindEventsForFloats(element) {
-  const floatField = element.querySelector('input');
-  floatField.addEventListener('focus', handleFocusFloats);
-  floatField.addEventListener('blur', handleBlurFloats);  
-}
-
 // Validate email
 
 let email = document.querySelector(".email");
@@ -67,10 +7,13 @@ function handleBlurEmail() {
   let re = new RegExp(/.+@.+\..+/);
   if (email.value!='' && re.test(email.value)) {
     makeFieldGreen(email);
+    makeLabelBlue(email);
   } else if (email.value == '') {
     makeFieldGrey(email);
+    makeLabelWhite(email);
   } else {
     makeFieldRed(email);
+    makeLabelRed(email);
     console.log("Invalid email");
   }
 }
@@ -84,11 +27,14 @@ function handleBlurUsername() {
   let re = new RegExp(/^[a-zA-Z0-9]{3,20}$/);
   if (username.value!='' && (!re.test(username.value))) {
     makeFieldRed(username);
+    makeLabelRed(username);
     console.log("Username should be 3-20 characters long");
   } else if (username.value == '') {
     makeFieldGrey(username);
+    makeLabelWhite(username);
   } else {
     makeFieldGreen(username);
+    makeLabelBlue(username);
   }
 }
 
@@ -104,19 +50,52 @@ function handleBlurPasswords() {
   if (passwordOne.value!='' && passwordTwo.value!='' && passwordOne.value!=passwordTwo.value) {
     makeFieldRed(passwordOne);
     makeFieldRed(passwordTwo);
+    makeLabelRed(passwordOne);
+    makeLabelRed(passwordTwo);
     console.log("Passwords don't match");
   } else if (!re.test(passwordOne.value) && passwordOne.value!='' && passwordTwo.value!='') {
     makeFieldRed(passwordOne);
     makeFieldRed(passwordTwo);
+    makeLabelRed(passwordOne);
+    makeLabelRed(passwordTwo);
     console.log("Password should be 6-30 characters long");
   } else if (passwordOne.value!='' && passwordTwo.value!='' && passwordOne.value==passwordTwo.value) {
     makeFieldGreen(passwordOne);
     makeFieldGreen(passwordTwo);
+    makeLabelBlue(passwordOne);
+    makeLabelBlue(passwordTwo);
     console.log("Passwords match");
   } else if ((passwordOne.value=='' && passwordTwo.value!='') || (passwordOne.value!='' && passwordTwo.value=='')) {
     makeFieldGrey(passwordOne);
     makeFieldGrey(passwordTwo);
+    makeLabelWhite(passwordOne);
+    makeLabelWhite(passwordTwo);
   }
+}
+
+// Float labels
+
+const handleFocusFloats = (e) => {
+  const target = e.target;
+  target.parentNode.classList.add('active');
+};
+
+const handleBlurFloats = (e) => {
+  const target = e.target;
+  if(!target.value) {
+    target.parentNode.classList.remove('active');
+  }  
+};
+
+const floatContainers = document.querySelectorAll('.float-container');
+floatContainers.forEach((floatContainer) => {
+  bindEventsForFloats(floatContainer);
+});
+
+function bindEventsForFloats(element) {
+  const floatField = element.querySelector('input');
+  floatField.addEventListener('focus', handleFocusFloats);
+  floatField.addEventListener('blur', handleBlurFloats);
 }
 
 function makeFieldGreen(field) {
@@ -132,4 +111,22 @@ function makeFieldRed(field) {
 function makeFieldGrey(field) {
   field.parentNode.classList.remove("invalid")
   field.parentNode.classList.remove("valid")
+}
+
+function makeLabelBlue(field) {
+  label = field.parentNode.querySelector('label');
+  label.classList.remove('invalid');
+  label.classList.add('active');
+}
+
+function makeLabelRed(field) {
+  label = field.parentNode.querySelector('label');
+  label.classList.remove('active');
+  label.classList.add('invalid');
+}
+
+function makeLabelWhite(field) {
+  label = field.parentNode.querySelector('label');
+  label.classList.remove('active');
+  label.classList.remove('invalid');
 }

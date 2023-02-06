@@ -96,6 +96,18 @@ input {
   pointer-events:none;
 }
 
+.float-container:focus-within > label {
+  color: var(--secondary-color);
+}
+
+.float-container > label.active {
+  color: var(--secondary-color);
+}
+
+.float-container > label.invalid {
+  color: var(--validate-color-red);
+}
+
 li.float-container > input {
   width: 100%;
   background-color: rgb(54, 60, 66);
