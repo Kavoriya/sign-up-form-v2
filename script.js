@@ -1,38 +1,62 @@
 // Float labels
 
-const FloatLabel = (() => {
+// const FloatLabel = (() => {
 
-  const handleFocus = (e) => {
-    const target = e.target;
-    target.parentNode.classList.add('active');
-  };
+//   // const handleFocus = (e) => {
+//   //   const target = e.target;
+//   //   target.parentNode.classList.add('active');
+//   // };
 
-  const handleBlur = (e) => {
-    const target = e.target;
-    if(!target.value) {
-      target.parentNode.classList.remove('active');
-    }  
-  };
+//   // const handleBlur = (e) => {
+//   //   const target = e.target;
+//   //   if(!target.value) {
+//   //     target.parentNode.classList.remove('active');
+//   //   }  
+//   // };
 
-  const bindEventsForFloats = (element) => {
-    const floatField = element.querySelector('input');
-    floatField.addEventListener('focus', handleFocus);
-    floatField.addEventListener('blur', handleBlur);  
-  };
+//   const bindEventsForFloats = (element) => {
+//     const floatField = element.querySelector('input');
+//     floatField.addEventListener('focus', handleFocus);
+//     floatField.addEventListener('blur', handleBlur);  
+//   };
 
-  const init = () => {
-    const floatContainers = document.querySelectorAll('.float-container');
+//   // const init = () => {
+//   //   const floatContainers = document.querySelectorAll('.float-container');
     
-    floatContainers.forEach((element) => {
-      bindEventsForFloats(element);
-    });
-  };
+//     floatContainers.forEach((element) => {
+//       bindEventsForFloats(element);
+//     });
+//   };
 
-  return {
-    init: init
-  };
-})();
-FloatLabel.init();
+//   return {
+//     init: init
+//   };
+// })();
+// FloatLabel.init();
+
+//
+const handleFocusFloats = (e) => {
+  const target = e.target;
+  target.parentNode.classList.add('active');
+};
+
+const handleBlurFloats = (e) => {
+  const target = e.target;
+  if(!target.value) {
+    target.parentNode.classList.remove('active');
+  }  
+};
+
+const floatContainers = document.querySelectorAll('.float-container');
+floatContainers.forEach((element) => {
+  bindEventsForFloats(element);
+});
+
+function bindEventsForFloats(element) {
+  const floatField = element.querySelector('input');
+  floatField.addEventListener('focus', handleFocusFloats);
+  floatField.addEventListener('blur', handleBlurFloats);  
+}
 
 // Validate email
 
