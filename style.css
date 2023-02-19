@@ -25,7 +25,10 @@ body {
   height: inherit;
   background: fixed;
   background-image: url(night-sky.webp);
+  background-color: black;
   background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
 }
 
 .window {
@@ -40,12 +43,13 @@ body {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center;
 }
 
 form {
   width: 540px;
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
 }
@@ -131,7 +135,7 @@ li.float-container:focus-within {
 }
 
 .checkbox {
-  height: 50px;
+  height: 30px;
   width: 100%;
   margin-top: 30px;
 }
@@ -194,6 +198,10 @@ button:hover {
 
 }
 
+.has-account {
+  margin-top: 15px;
+}
+
 .has-account > p {
   display: inline;
 }
@@ -201,4 +209,23 @@ button:hover {
 .has-account > a {
   color: var(--secondary-color);
   text-decoration: none;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .window {
+    height: 100%;
+  }
+  form {
+    width: 100%;
+  }
+  html {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+h1 {
+    font-size: 1.5rem;
+  }
 }
