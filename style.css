@@ -122,6 +122,14 @@ li.float-container:focus-within {
   border-bottom: 2px solid var(--secondary-color);
 }
 
+.error-message {
+  font-size: 0.7rem;
+  margin: -7px 18px;
+  color: var(--validate-color-red);
+  visibility: hidden;
+  height: 1rem;
+}
+
 .checkbox {
   height: 50px;
   width: 100%;

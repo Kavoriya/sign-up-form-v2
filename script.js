@@ -1,3 +1,7 @@
+let emailErrorMessage = document.querySelector(".error-message-email");
+
+
+
 // Validate email
 
 let email = document.querySelector(".email");
@@ -8,13 +12,16 @@ function handleBlurEmail() {
   if (email.value!='' && re.test(email.value)) {
     makeFieldGreen(email);
     makeLabelBlue(email);
+    emailErrorMessage.style.visibility = "hidden";
   } else if (email.value == '') {
     makeFieldGrey(email);
     makeLabelWhite(email);
+    emailErrorMessage.style.visibility = "hidden";
   } else {
     makeFieldRed(email);
     makeLabelRed(email);
-    console.log("Invalid email");
+    emailErrorMessage.textContent = "INVALID EMAIL*";
+    emailErrorMessage.style.visibility = "visible";
   }
 }
 
