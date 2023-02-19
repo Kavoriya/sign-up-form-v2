@@ -1,6 +1,7 @@
 let emailErrorMessage = document.querySelector(".error-message-email");
-
-
+let usernameErrorMessage = document.querySelector(".error-message-username");
+let passwordErrorMessageOne = document.querySelector(".error-message-password-1");
+let passwordErrorMessageTwo = document.querySelector(".error-message-password-2");
 
 // Validate email
 
@@ -35,13 +36,16 @@ function handleBlurUsername() {
   if (username.value!='' && (!re.test(username.value))) {
     makeFieldRed(username);
     makeLabelRed(username);
-    console.log("Username should be 3-20 characters long");
+    usernameErrorMessage.textContent = "USERNAME MUST BE 3-20 CHARACTERS LONG*";
+    usernameErrorMessage.style.visibility = "visible";
   } else if (username.value == '') {
     makeFieldGrey(username);
     makeLabelWhite(username);
+    usernameErrorMessage.style.visibility = "hidden";
   } else {
     makeFieldGreen(username);
     makeLabelBlue(username);
+    usernameErrorMessage.style.visibility = "hidden";
   }
 }
 
@@ -54,29 +58,40 @@ passwordTwo.addEventListener('blur', handleBlurPasswords);
 
 function handleBlurPasswords() {
   let re = new RegExp(/^[a-zA-Z0-9]{6,30}$/);
+  // if (!re.test(passwordOne.value)) {
+  //   makeFieldRed(passwordOne);
+  //   passwordErrorMessageOne.textContent = "PASSWORD MUST BE 6-30 CHARACTERS LONG*";
+  //   passwordErrorMessageOne.style.visibility = "visible";
+  //   return;
+  // } else {
+  //   passwordErrorMessageOne.style.visibility = "hidden";
+  // }
   if (passwordOne.value!='' && passwordTwo.value!='' && passwordOne.value!=passwordTwo.value) {
     makeFieldRed(passwordOne);
     makeFieldRed(passwordTwo);
     makeLabelRed(passwordOne);
     makeLabelRed(passwordTwo);
-    console.log("Passwords don't match");
+    passwordErrorMessageTwo.textContent = "PASSWORDS MUST MATCH*";
+    passwordErrorMessageTwo.style.visibility = "visible";
   } else if (!re.test(passwordOne.value) && passwordOne.value!='' && passwordTwo.value!='') {
     makeFieldRed(passwordOne);
     makeFieldRed(passwordTwo);
     makeLabelRed(passwordOne);
     makeLabelRed(passwordTwo);
-    console.log("Password should be 6-30 characters long");
+    passwordErrorMessageTwo.textContent = "PASSWORD MUST BE 6-30 CHARACTERS LONG*";
+    passwordErrorMessageTwo.style.visibility = "visible";
   } else if (passwordOne.value!='' && passwordTwo.value!='' && passwordOne.value==passwordTwo.value) {
     makeFieldGreen(passwordOne);
     makeFieldGreen(passwordTwo);
     makeLabelBlue(passwordOne);
     makeLabelBlue(passwordTwo);
-    console.log("Passwords match");
+    passwordErrorMessageTwo.style.visibility = "hidden";
   } else if ((passwordOne.value=='' && passwordTwo.value!='') || (passwordOne.value!='' && passwordTwo.value=='')) {
     makeFieldGrey(passwordOne);
     makeFieldGrey(passwordTwo);
     makeLabelWhite(passwordOne);
     makeLabelWhite(passwordTwo);
+    passwordErrorMessageTwo.style.visibility = "hidden";
   }
 }
 
